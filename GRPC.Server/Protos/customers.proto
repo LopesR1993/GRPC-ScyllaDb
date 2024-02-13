@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "GRPC.Server";
+
+service Customer {
+	rpc GetCustomerInfo(CustomerLookupModel) returns (CustomerModel);
+	rpc GetNewCustomers(NewCustomerRequest) returns (stream CustomerModel);
+	rpc PutCustomerInfo(EditCustomerRequest) returns (CustomerModel);
+	rpc CreateCustomerInfo(CreateCustomerRequest) returns (CustomerModel);
+	rpc DeleteCustomerInfo(DeleteCustomerRequest) returns (CustomerModel);
+}
+
+message DeleteCustomerRequest {
+	string id = 1;
+}
+message CreateCustomerRequest{
+	string name = 1;
+}
+message EditCustomerRequest{
+	string id = 1;
+	string name = 2;
+}
+
+message NewCustomerRequest {
+}
+message CustomerLookupModel {
+	string id = 1;
+}
+
+message CustomerModel {
+	string id = 1;
+	string name = 2;
+}
